@@ -1,7 +1,12 @@
 <?php
 require_once("../../functions/auth.php");
 forcer_utilisateur_connecte();
-est_connecte();
+if(est_connecte()){
+    if($_SESSION['role'] != "medecin"){
+        header("Location: /tables/table-infirmier/index.php");
+        exit();
+    }
+}
 require_once("../../ConnectionToBD.php");
 require_once("../../menu.php");
 //require("vendor/autoload.php");
